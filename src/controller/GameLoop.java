@@ -48,7 +48,7 @@ public class GameLoop implements Runnable {
             food.respawn();
         }
         if (snake.isCollidingWith(specialFood)) {
-            snake.grow();
+            snake.specialGrow();
             specialFood.respawn();
         }
         if (snake.isDead()) {

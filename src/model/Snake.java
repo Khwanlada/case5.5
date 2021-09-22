@@ -50,6 +50,14 @@ public class Snake {
         body.add(prev_tail);
     }
 
+    public void specialGrow() {
+        body.add(prev_tail);
+        body.add(prev_tail);
+        body.add(prev_tail);
+        body.add(prev_tail);
+        body.add(prev_tail);
+    }
+
     public int getLength() {
         return body.size();
     }

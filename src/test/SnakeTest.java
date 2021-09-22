@@ -49,7 +49,9 @@ public class SnakeTest {
         //Add
         SpecialFood specialFood = new SpecialFood(new Point2D(0,0));
         specialFood.respawn();
+
         assertNotSame(food.getPosition(), new Point2D(0, 0));
+
         //Add
         assertNotSame(specialFood.getPosition(), new Point2D(0, 0));
     }
@@ -58,6 +60,12 @@ public class SnakeTest {
     public void snakeGrowthShouldAddItsLengthByOne() {
         snake.grow();
         assertEquals(snake.getLength(), 2);
+    }
+    //Add
+    @Test
+    public void snakeGrowthShouldAddItsLengthByFive() {
+        snake.specialGrow();
+        assertEquals(snake.getLength(), 6);
     }
 
     @Test
