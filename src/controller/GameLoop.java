@@ -1,22 +1,30 @@
 package controller;
 
+import com.sun.javafx.tk.FontMetrics;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Screen;
 import model.Direction;
 import model.Food;
 import model.Snake;
+import model.SpecialFood;
 import view.Platform;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class GameLoop implements Runnable {
     private Platform platform;
     private Snake snake;
     private Food food;
+    private SpecialFood specialFood;
     private float interval = 1000.0f / 10;
     private boolean running;
 
-    public GameLoop(Platform platform, Snake snake, Food food) {
+    public GameLoop(Platform platform, Snake snake, Food food, SpecialFood specialFood) {
         this.snake = snake;
         this.platform = platform;
         this.food = food;
+        this.specialFood = specialFood;
         running = true;
     }
 
@@ -39,13 +47,17 @@ public class GameLoop implements Runnable {
             snake.grow();
             food.respawn();
         }
+        if (snake.isCollidingWith(specialFood)) {
+            snake.grow();
+            specialFood.respawn();
+        }
         if (snake.isDead()) {
             running = false;
         }
     }
 
     private void redraw() {
-        platform.render(snake, food);
+        platform.render(snake, food , specialFood);
     }
 
     @Override
@@ -69,4 +81,7 @@ public class GameLoop implements Runnable {
     public Platform getPlatform() {
         return platform;
     }
+
+
+
 }

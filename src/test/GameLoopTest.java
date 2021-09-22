@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import model.Food;
 import model.Snake;
+import model.SpecialFood;
 import org.junit.Before;
 import org.junit.Test;
 import view.Platform;
@@ -23,7 +24,7 @@ public class GameLoopTest {
     @Before
     public void init() throws NoSuchMethodException {
         gameLoopUnderTest = new GameLoop(new Platform(), new Snake(new Point2D(0, 0))
-                , new Food());
+                , new Food() , new SpecialFood());
         update = GameLoop.class.getDeclaredMethod("update");
         update.setAccessible(true);
         collision = GameLoop.class.getDeclaredMethod("checkCollision");
@@ -43,7 +44,7 @@ public class GameLoopTest {
     public void testClockTick() throws InvocationTargetException,
             IllegalAccessException {
         gameLoopUnderTest = new GameLoop(new Platform(), new Snake(new Point2D(0, 0)),
-                new Food());
+                new Food(), new SpecialFood());
         clockTickHelper();
         assertEquals(gameLoopUnderTest.getSnake().getHead(), new Point2D(0, 1));
     }
@@ -52,7 +53,7 @@ public class GameLoopTest {
     public void testNoBack() throws InvocationTargetException,
             IllegalAccessException {
         gameLoopUnderTest = new GameLoop(new Platform(), new Snake(new Point2D(0, 0)),
-                new Food());
+                new Food(), new SpecialFood());
         gameLoopUnderTest.getPlatform().setKey(KeyCode.DOWN);
         clockTickHelper();
         assertEquals(gameLoopUnderTest.getSnake().getHead(), new Point2D(0, 1));

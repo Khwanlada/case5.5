@@ -7,6 +7,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import model.Food;
 import model.Snake;
+import model.SpecialFood;
+
+import java.awt.*;
 
 public class Platform extends Pane {
 
@@ -23,7 +26,7 @@ public class Platform extends Pane {
         this.getChildren().add(canvas);
     }
 
-    public void render(Snake snake, Food food) {
+    public void render(Snake snake, Food food, SpecialFood specialFood) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, WIDTH * TILE_SIZE, HEIGHT * TILE_SIZE);
         gc.setFill(Color.BLUE);
@@ -34,6 +37,10 @@ public class Platform extends Pane {
         gc.setFill(Color.RED);
         gc.fillRect(food.getPosition().getX() * TILE_SIZE, food.getPosition().getY()
                 * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        //Add
+        gc.setFill(Color.GREEN);
+        gc.fillRect(specialFood.getPosition().getX() * TILE_SIZE, specialFood.getPosition().getY()
+                * TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
 
     public KeyCode getKey() {
@@ -43,6 +50,5 @@ public class Platform extends Pane {
     public void setKey(KeyCode key) {
         this.key = key;
     }
-
 
 }

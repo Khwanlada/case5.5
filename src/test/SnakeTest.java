@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 import model.Direction;
 import model.Food;
 import model.Snake;
+import model.SpecialFood;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,14 +35,23 @@ public class SnakeTest {
     @Test
     public void collisionFlagShouldRaiseIfSnakeCollideWithFood() {
         Food food = new Food(new Point2D(0, 0));
+        //Add
+        SpecialFood specialFood = new SpecialFood(new Point2D(0,0));
         assertTrue(snake.isCollidingWith(food));
+        //Add
+        assertTrue(snake.isCollidingWith(specialFood));
     }
 
     @Test
     public void foodShouldRespawnOnDifferentCoordinates() {
         Food food = new Food(new Point2D(0, 0));
         food.respawn();
+        //Add
+        SpecialFood specialFood = new SpecialFood(new Point2D(0,0));
+        specialFood.respawn();
         assertNotSame(food.getPosition(), new Point2D(0, 0));
+        //Add
+        assertNotSame(specialFood.getPosition(), new Point2D(0, 0));
     }
 
     @Test

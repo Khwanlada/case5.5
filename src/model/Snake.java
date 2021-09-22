@@ -3,6 +3,7 @@ package model;
 import javafx.geometry.Point2D;
 import view.Platform;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,7 @@ public class Snake {
     }
 
     public void setCurrentDirection(Direction direction) {
-        this.direction =
-                direction;
+        this.direction = direction;
     }
 
     public Direction getCurrentDirection() {
@@ -40,6 +40,10 @@ public class Snake {
 
     public boolean isCollidingWith(Food food) {
         return head.equals(food.getPosition());
+    }
+    //Add
+    public boolean isCollidingWith(SpecialFood specialFood) {
+        return head.equals(specialFood.getPosition());
     }
 
     public void grow() {
