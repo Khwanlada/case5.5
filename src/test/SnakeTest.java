@@ -57,6 +57,29 @@ public class SnakeTest {
         snake.grow();
         assertTrue(snake.getBody().contains(cur_head));
     }
-
+    @Test
+ public void snakeWillDieIfItGoesBeyondTheGameBorder() {
+         snake = new Snake(new Point2D(30,30));
+         snake.setCurrentDirection(Direction.RIGHT);
+         snake.update();
+         assertTrue(snake.isDead());
+         }
+ @Test
+ public void snakeWillDieIfItHitsItsBody() {
+         snake = new Snake(new Point2D(0,0));
+         snake.setCurrentDirection(Direction.DOWN);
+         snake.update();
+         snake.grow();
+         snake.setCurrentDirection(Direction.LEFT);
+         snake.update();
+         snake.grow();
+         snake.setCurrentDirection(Direction.UP);
+         snake.update();
+         snake.grow();
+         snake.setCurrentDirection(Direction.RIGHT);
+         snake.update();
+         snake.grow();
+         assertTrue(snake.isDead());
+         }
 
 }
